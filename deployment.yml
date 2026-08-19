@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      imagePullSecrets:
+        - name: dockerreg
+      containers:
+        - name: my-petclinic-container
+          image: docker.io/somisettyvasanth/petclinic:24
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: my-configmap
+                  key: APP_NAME
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: my-configmap
+                  key: ENVIRONMENT
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: my-configmap
+                  key: LOG_LEVEL
+          ports:
+            - containerPort: 8080
