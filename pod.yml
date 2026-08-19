@@ -4,7 +4,7 @@ metadata:
   name: my-pod-1
 spec:
   containers:
-  - name: my-container-1
+  - name: my-nginx-1
     image: nginx:1.27
     env:
       - name: APP_NAME
@@ -23,4 +23,4 @@ spec:
             name: my-configmap
             key: LOG_LEVEL
     ports:
-    - containerPort: 80
+    - containerPort: 81
