@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-pod-1
+  name: my-pod-nginx
 spec:
   containers:
-  - name: my-nginx-1
+  - name: my-nginx-app
     image: nginx:1.27
     env:
       - name: APP_NAME
@@ -23,4 +23,4 @@ spec:
             name: my-configmap
             key: LOG_LEVEL
     ports:
-    - containerPort: 81
+    - containerPort: 80
